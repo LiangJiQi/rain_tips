@@ -97,4 +97,11 @@ export default {
     var mail_result = await check_weather_status(weather_json, env)
     return new Response(JSON.stringify(Object.assign(weather_json, mail_result)), { headers: { "content-type": 'application/json' } });
   },
+
+  async scheduled(event, env, ctx) {
+    var weather_json = await req_weather_data(env)
+    var mail_result = await check_weather_status(weather_json, env)
+    console.log(Object.assign(weather_json, mail_result))
+  },
+
 };
