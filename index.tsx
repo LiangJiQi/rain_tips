@@ -29,7 +29,7 @@ async function check_weather_status(weather_json, env) {
   var mail_result
   for (let index = 0; index < weather_json.minutely.length; index++) {
     const element = weather_json.minutely[index];
-    var loop_status = Number(element.precip) > 0
+    var loop_status = Number(element.precip) > 1
     var diff = Date.parse(last_status_time) - Date.parse(element.fxTime);
     if (diff >= 0) { continue; }
 
@@ -83,7 +83,7 @@ async function req_weather_data(env) {
     throw new Error(`Response code: ${response_json.code}`);
   }
 
-  console.log(response_json);
+  //console.log(response_json);
   return response_json
 }
 
