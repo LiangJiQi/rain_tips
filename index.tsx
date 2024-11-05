@@ -27,9 +27,13 @@ async function check_weather_status(weather_json, env) {
   var start_index = 0
   var count = 0
   var mail_result
+  var raining = 0.2
+  if(weather_status == true){
+    raining = 0.0
+  }
   for (let index = 0; index < weather_json.minutely.length; index++) {
     const element = weather_json.minutely[index];
-    var loop_status = Number(element.precip) > 0.2
+    var loop_status = Number(element.precip) > raining
     var diff = Date.parse(last_status_time) - Date.parse(element.fxTime);
     if (diff >= 0) { continue; }
 
